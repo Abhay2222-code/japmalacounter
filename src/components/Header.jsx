@@ -88,7 +88,7 @@ const Header = () => {
         <div className="card-top">
           <div>
              <img className="logo"
-             src="/public/images/logo.png" alt="Logo"></img>
+             src="/images/logo.png" alt="Logo"></img>
              
             <p className="eyebrow">JapaMala</p>
             <h1>{selectedDeity ? selectedDeity.mantra : "🙏 अपने इष्ट देवता को चुनें"}</h1>
