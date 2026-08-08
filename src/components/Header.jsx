@@ -7,7 +7,7 @@ const deities = [
 ];
 
 const Header = () => {
-  const [count, setCount] = useState(100);
+  const [count, setCount] = useState(0);
   const [mala, setMala] = useState(0);
   const [message, setMessage] = useState(" जप प्रारंभ करने के लिए अपने आराध्य देव का चयन करें।");
   const [theme, setTheme] = useState("light");
