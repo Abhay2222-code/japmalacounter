@@ -1,10 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-const deities = [
-  { id: 1, name: "Shiv", mantra: "Om Namah Shivaya", image: "/images/shiva.png" },
-  { id: 2, name: "Krishna", mantra: "Hare Krishna", image: "/images/krishna.png" },
-  { id: 3, name: "Ganesha", mantra: "Om Gan Ganapataye Namah", image: "/images/ganesha.png" },
-  { id: 4, name: "Durga", mantra: "Om Dum Durgayei Namah", image: "/images/durga.png" },
-];
+import React, { useEffect, useState } from "react";
+import deities from "../data/deities";
+import MalaRing from "./MalaRing";
 
 const Header = () => {
   const [count, setCount] = useState(0);
@@ -12,8 +8,8 @@ const Header = () => {
   const [message, setMessage] = useState(" जप प्रारंभ करने के लिए अपने आराध्य देव का चयन करें।");
   const [theme, setTheme] = useState("light");
   const [selectedDeity, setSelectedDeity] = useState(null);
+  const [ringActive, setRingActive] = useState(false);
 
-  const audioRef = useRef(new Audio("/Om Namah Shivaya.mp3"));
   const progress = Math.min((count / 108) * 100, 100);
 
   useEffect(() => {
@@ -49,19 +45,25 @@ const Header = () => {
   };
 
   const handleIncrement = () => {
-    const mantra = selectedDeity ? selectedDeity.mantra : "Om Namah Shivaya";
+  if (!selectedDeity) {
+    setMessage("🙏 पहले अपने आराध्य देव का चयन करें।");
+    return;
+  }
+
+  const mantra = selectedDeity.mantra;
 
     if (count === 108) {
       setCount(0);
       setMala((prev) => prev + 1);
-      setMessage(`🙏 Mala complete. ${mantra}`);
+      setMessage(`🙏 Mala complete.`);
+      setRingActive(true);
 
-      try {
-        audioRef.current.currentTime = 0;
-        audioRef.current.play();
-      } catch (error) {
-        console.error("Audio play failed", error);
-      }
+      setTimeout(() => {
+       setRingActive(false);
+      }, 5000);
+
+      const audio = new Audio(selectedDeity.sound);
+      audio.play();
 
       if ("vibrate" in navigator) {
         navigator.vibrate([300, 100, 300]);
@@ -78,12 +80,14 @@ const Header = () => {
     if (confirmReset) {
       setCount(0);
       setMala(0);
+      setSelectedDeity(null);
       setMessage("🌼शांति और एकाग्रता के साथ मंत्र-जाप शुरू करें।.");
     }
   };
 
   return (
     <div className="app-shell">
+      {ringActive && < MalaRing/>}
       <div className="spiritual-card">
         <div className="card-top">
           <div>
@@ -159,4 +163,3 @@ const Header = () => {
 };
 
 export default Header;
-
