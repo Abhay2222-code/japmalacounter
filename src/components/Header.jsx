@@ -46,7 +46,7 @@ const Header = () => {
 
   const handleIncrement = () => {
   if (!selectedDeity) {
-    setMessage("🙏 पहले अपने आराध्य देव का चयन करें।");
+    alert("🙏 पहले अपने आराध्य देव का चयन करें।");
     return;
   }
 
@@ -71,7 +71,7 @@ const Header = () => {
       }
     } else {
       setCount((prev) => prev + 1);
-      setMessage("🪔 भक्तिभाव से जप करना...");
+      setMessage("🪔 भक्तिभाव से जप करें...");
     }
   };
 

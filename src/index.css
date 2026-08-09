@@ -270,6 +270,7 @@ body.dark .selected-deity-card {
   cursor: pointer;
   font-weight: 700;
   min-height: 56px;
+  outline: none;
 }
 
 .primary-btn {
