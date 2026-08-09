@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import deities from "../data/deities";
+import deities from "../data/deities.js";
 import MalaRing from "./MalaRing";
 
 const Header = () => {
@@ -56,7 +56,7 @@ const Header = () => {
       setCount(0);
       setMala((prev) => prev + 1);
       setMessage(`🙏 Mala complete.`);
-      
+
       setRingActive(true);
 
       setTimeout(() => {
