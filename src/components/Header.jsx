@@ -56,6 +56,7 @@ const Header = () => {
       setCount(0);
       setMala((prev) => prev + 1);
       setMessage(`🙏 Mala complete.`);
+      
       setRingActive(true);
 
       setTimeout(() => {
