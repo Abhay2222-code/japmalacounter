@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import deities from "../data/deities.js";
-import MalaRing from "./MalaRing";
+import MalaRing from './MalaRing.jsx'
 
 const Header = () => {
   const [count, setCount] = useState(0);
@@ -111,6 +111,7 @@ const Header = () => {
         </div>
 
         {!selectedDeity ? (
+          
           <div className="deity-section">
             <div className="deity-grid">
               {deities.map((deity) => (
